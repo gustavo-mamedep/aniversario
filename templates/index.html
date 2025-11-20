@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Convite de 15 anos</title>
+
+    <!-- Importante para funcionar bem no celular -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Fonte bonita -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+
+
+    <!-- Nosso CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="hero">
+        <div class="overlay"></div>
+
+        <div class="hero-content">
+            <p class="subtitle">Você é meu convidado!</p>
+            <h1>
+                <span class="h1-prefix">15 anos de</span>
+                <span class="nome-aniversariante">{{ nome_aniversariante }}</span>
+            </h1>
+
+
+            <div class="info-cards">
+                <div class="info-card">
+                    <span class="label">Data</span>
+                    <span class="value">{{ data_formatada }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Horário</span>
+                    <span class="value">{{ hora_formatada }}</span>
+                </div>
+                <div class="info-card">
+                    <span class="label">Local</span>
+                    <span class="value">
+                        {{ local_nome }}<br>
+                        {{ local_endereco }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="button-row">
+                <a class="btn primary" href="{{ link_maps }}" target="_blank">
+                    Confirmar sua Presença
+                </a>
+                <button class="btn outline" type="button">
+                    Ver Localização
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="section-inner">
+            <h2>Sobre a festa</h2>
+            <p>
+                Vai ser uma noite muito especial para comemorar meus 15 anos com pessoas queridas.
+                Ter você comigo deixa esse momento ainda mais importante. ✨
+            </p>
+            <ul class="details-list">
+                <li><strong>Tema:</strong> Noite Glamour</li>
+                <li><strong>Traje:</strong> Esporte fino</li>
+                <li><strong>Chegada:</strong> Tente chegar 15 min antes para as fotos oficiais.</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>
