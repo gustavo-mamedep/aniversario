@@ -234,3 +234,65 @@ h1 {
         padding: 1.6rem 1.2rem;
     }
 }
+
+
+
+/* ---------- CONTADOR ---------- */
+
+.countdown-block {
+    padding: 1.8rem 1.4rem 0;
+    background: var(--bg-body);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.countdown-label {
+    margin: 0 0 0.8rem;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+}
+
+.countdown {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    justify-content: center;
+}
+
+.cd-item {
+    min-width: 62px;
+    padding: 0.65rem 0.8rem;
+    border-radius: 14px;
+    background: var(--primary-soft);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cd-item span {
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: var(--text-main);
+}
+
+.cd-item small {
+    margin-top: 0.1rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+}
+
+/* Ajuste no mobile para não ficar gigante */
+@media (max-width: 480px) {
+    .cd-item {
+        min-width: 56px;
+        padding: 0.55rem 0.7rem;
+    }
+
+    .cd-item span {
+        font-size: 1.05rem;
+    }
+}

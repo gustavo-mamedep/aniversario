@@ -48,7 +48,7 @@
             </div>
 
             <div class="button-row">
-                <a class="btn primary" href="{{ link_maps }}" target="_blank">
+                <a class="btn primary" target="_blank">
                     Confirmar sua Presença
                 </a>
                 <button class="btn outline" type="button">
@@ -58,19 +58,93 @@
         </div>
     </div>
 
+
+    <div class="countdown-block">
+        <p class="countdown-label">Falta pouco para a festa! 💖</p>
+        <div class="countdown" id="countdown">
+            <div class="cd-item">
+                <span id="cd-dias">00</span>
+                <small>Dias</small>
+            </div>
+            <div class="cd-item">
+                <span id="cd-horas">00</span>
+                <small>Horas</small>
+            </div>
+            <div class="cd-item">
+                <span id="cd-min">00</span>
+                <small>Min</small>
+            </div>
+            <div class="cd-item">
+                <span id="cd-seg">00</span>
+                <small>Seg</small>
+            </div>
+        </div>
+    </div>
+
+
     <section class="section">
         <div class="section-inner">
             <h2>Sobre a festa</h2>
             <p>
-                Vai ser uma noite muito especial para comemorar meus 15 anos com pessoas queridas.
+                Vai ser uma tarde muito especial para comemorar meus 15 anos com pessoas muito queridas.
                 Ter você comigo deixa esse momento ainda mais importante. ✨
             </p>
             <ul class="details-list">
-                <li><strong>Tema:</strong> Noite Glamour</li>
-                <li><strong>Traje:</strong> Esporte fino</li>
-                <li><strong>Chegada:</strong> Tente chegar 15 min antes para as fotos oficiais.</li>
+                <li><strong>Chegada:</strong> Pode chegar por qualquer portaria, avisar que vai no aniversário
+                                              da Ana Luíza na chácara do Valber Rocha.
+                </li>
+                <li><strong>Traje:</strong> Venha como quiser, teremos piscina e futebol de sabão. Então se quiser
+                                            trazer uma troca de roupa e toalhas fique a vontade! Será uma confraternização sem
+                                            cerimônias.
+                </li>
             </ul>
+
         </div>
     </section>
+
+
+
+
+    <script>
+        // Cria um objeto Date com base na data da festa vinda do Python
+        const DATA_FESTA = new Date("{{ data_festa_iso }}".replace(" ", "T"));
+
+        function atualizarCountdown() {
+            const agora = new Date();
+            const diff = DATA_FESTA - agora;
+
+            const diasEl = document.getElementById('cd-dias');
+            const horasEl = document.getElementById('cd-horas');
+            const minEl = document.getElementById('cd-min');
+            const segEl = document.getElementById('cd-seg');
+
+            if (!diasEl || !horasEl || !minEl || !segEl) {
+                return;
+            }
+
+            if (diff <= 0) {
+                diasEl.innerText = "00";
+                horasEl.innerText = "00";
+                minEl.innerText = "00";
+                segEl.innerText = "00";
+                return;
+            }
+
+            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const minutos = Math.floor((diff / (1000 * 60)) % 60);
+            const segundos = Math.floor((diff / 1000) % 60);
+
+            diasEl.innerText = String(dias).padStart(2, '0');
+            horasEl.innerText = String(horas).padStart(2, '0');
+            minEl.innerText = String(minutos).padStart(2, '0');
+            segEl.innerText = String(segundos).padStart(2, '0');
+        }
+
+        atualizarCountdown();
+        setInterval(atualizarCountdown, 1000);
+    </script>
 </body>
 </html>
+
+
