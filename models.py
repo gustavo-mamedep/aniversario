@@ -30,6 +30,8 @@ def init_db():
 
 
 def salvar_presenca(nome, telefone, motorista, cpf_motorista, qtde_pessoas, data=None):
+    import requests  # importa aqui para não quebrar nada
+
     if data is None:
         data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -40,7 +42,34 @@ def salvar_presenca(nome, telefone, motorista, cpf_motorista, qtde_pessoas, data
         VALUES (?, ?, ?, ?, ?, ?)
     """, (nome, telefone, motorista, cpf_motorista, qtde_pessoas, data))
     conn.commit()
+
+    # PEGAR O ID recém criado
+    novo_id = cur.lastrowid
+
     conn.close()
+
+    # ---------------------
+    # CHAMA O N8N AUTOMÁTICO
+    # ---------------------
+
+    url_n8n = "https://n8n.vestelivre.com.br/webhook/rsvp_analuiza"
+
+    payload = {
+        "id": novo_id,
+        "nome": nome,
+        "telefone": telefone,
+        "motorista": motorista,
+        "cpf_motorista": cpf_motorista,
+        "qtde_pessoas": qtde_pessoas,
+        "data": data
+    }
+
+    try:
+        requests.post(url_n8n, json=payload, timeout=5)
+    except Exception as e:
+        print("Falha ao chamar N8N:", e)
+
+
 
 
 def listar_presencas():
