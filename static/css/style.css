@@ -1,6 +1,6 @@
 :root {
     --bg-body: #fdf7f8;
-    --primary: #d58b9b;           /* rosa queimado */
+    --primary: #f75074;
     --primary-soft: rgba(213, 139, 155, 0.18);
     --text-main: #2f1b26;         /* marrom bem escuro */
     --text-muted: #7a5d6a;        /* rosé/malva para textos */
@@ -86,7 +86,7 @@ h1 {
 
 .nome-aniversariante {
     font-family: "Parisienne", cursive;
-    font-size: clamp(3.2rem, 9vw, 4.2rem);
+    font-size: clamp(4rem, 11vw, 5rem);
     color: var(--primary);
     line-height: 1.05;
 }
