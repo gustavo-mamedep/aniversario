@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
-from datetime import datetime
+from datetime import datetime, timedelta
 from models import init_db, salvar_presenca, listar_presencas
 
 app = Flask(__name__)
@@ -102,6 +102,9 @@ def confirmado():
         nome_aniversariante=NOME_ANIVERSARIANTE,
     )
 
+
+
+
 @app.route("/admin/presencas")
 def admin_presencas():
     chave = request.args.get("chave", "")
@@ -111,6 +114,21 @@ def admin_presencas():
 
     presencas = listar_presencas()
     total_pessoas = sum((p["qtde_pessoas"] or 0) for p in presencas)
+
+    # Formatar data para dd/mm/yy HH:MM em horário de Brasília (UTC-3)
+    for p in presencas:
+        data_str = p.get("data")
+        if data_str:
+            try:
+                # formato que salvamos: 2025-11-20 19:30:00
+                dt = datetime.strptime(data_str, "%Y-%m-%d %H:%M:%S")
+                dt_br = dt - timedelta(hours=3)
+                p["data_formatada"] = dt_br.strftime("%d/%m/%y %H:%M")
+            except Exception:
+                # se algo der errado, mostra o original
+                p["data_formatada"] = data_str
+        else:
+            p["data_formatada"] = ""
 
     return render_template(
         "admin_presencas.html",

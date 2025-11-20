@@ -24,7 +24,7 @@
                             <th>Motorista</th>
                             <th>CPF Motorista</th>
                             <th>Qtde</th>
-                            <th>Data</th>
+                            <th>Data / Horário</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -36,7 +36,7 @@
                                 <td>{{ p.motorista or "-" }}</td>
                                 <td>{{ p.cpf_motorista or "-" }}</td>
                                 <td>{{ p.qtde_pessoas }}</td>
-                                <td>{{ p.data }}</td>
+                                <td>{{ p.data_formatada }}</td>
                             </tr>
                         {% endfor %}
                     </tbody>
