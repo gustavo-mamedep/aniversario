@@ -10,7 +10,8 @@ NOME_ANIVERSARIANTE = "Ana Luíza"
 DATA_FESTA = "2025-12-06 15:00:00"  # AAAA-MM-DD HH:MM:SS
 LOCAL_NOME = "Condominio Morada do Sol"
 LOCAL_ENDERECO = "Rua Tamarindos, 600"
-LINK_MAPS = "https://www.google.com/maps/place/R.+Tamarindos,+60...55r!5m1!1e4?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
+LINK_MAPS = "https://www.google.com/maps/place/R.+Tamarindos,+600+-+Morada+do+Sol,+Uberl%C3%A2ndia+-+MG,+38415-474/@-18.8954859,-48.3481422,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x94a44164977b417d:0x39f7cd92e11fd7e1!8m2!3d-18.8954859!4d-48.3474985!16s%2Fg%2F11lcc6s55r!5m1!1e4?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
+
 
 # --------- INICIAR BANCO ---------
 init_db()
