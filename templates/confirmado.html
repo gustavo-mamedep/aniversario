@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Presença confirmada - {{ nome_aniversariante }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="presenca-body">
+    <div class="presenca-container">
+        <h1>Presença confirmada! 🎉</h1>
+        <p>Obrigado por confirmar sua presença. Estamos te esperando na festa!</p>
+
+        <a href="{{ url_for('index') }}" class="btn primary">
+            Voltar para o convite
+        </a>
+    </div>
+</body>
+</html>

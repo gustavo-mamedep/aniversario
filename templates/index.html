@@ -48,13 +48,17 @@
             </div>
 
             <div class="button-row">
-                <a class="btn primary" target="_blank">
+                <!-- Botão para o formulário de presença -->
+                <a class="btn primary" href="{{ url_for('presenca') }}">
                     Confirmar sua Presença
                 </a>
-                <button class="btn outline" type="button">
+
+                <!-- Botão de localização usando LINK_MAPS do Python -->
+                <a class="btn outline" href="{{ link_maps }}" target="_blank">
                     Ver Localização
-                </button>
+                </a>
             </div>
+
         </div>
     </div>
 

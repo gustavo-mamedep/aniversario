@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirmar presença - {{ nome_aniversariante }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="presenca-body">
+    <div class="presenca-container">
+        <h1>Confirme sua presença</h1>
+        <p>Preencha os dados abaixo para organizar melhor a festa 😊</p>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for category, msg in messages %}
+                    <li class="flash-{{ category }}">{{ msg }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+
+        <form method="post">
+            <div class="form-group">
+                <label for="nome">Nome completo *</label>
+                <input type="text" id="nome" name="nome"
+                       value="{{ form_data.get('nome', '') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone (WhatsApp) *</label>
+                <input type="tel" id="telefone" name="telefone"
+                       value="{{ form_data.get('telefone', '') }}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="motorista">Nome do motorista</label>
+                <input type="text" id="motorista" name="motorista"
+                       value="{{ form_data.get('motorista', '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="cpf_motorista">CPF do motorista</label>
+                <input type="text" id="cpf_motorista" name="cpf_motorista"
+                       value="{{ form_data.get('cpf_motorista', '') }}">
+            </div>
+
+            <div class="form-group">
+                <label for="qtde_pessoas">Quantidade de pessoas *</label>
+                <input type="number" id="qtde_pessoas" name="qtde_pessoas"
+                       value="{{ form_data.get('qtde_pessoas', '1') }}"
+                       min="1" required>
+            </div>
+
+            <button type="submit" class="btn primary full">
+                Enviar confirmação
+            </button>
+
+            <div class="voltar-link">
+                <a href="{{ url_for('index') }}" class="btn outline full">
+                    Voltar para o convite
+                </a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function formatarTelefone(valor) {
+            let v = valor.replace(/\D/g, "");
+
+            if (v.length > 11) {
+                v = v.slice(0, 11);
+            }
+
+            if (v.length > 6) {
+                // (XX) XXXXX-XXXX
+                return v.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+            } else if (v.length > 2) {
+                // (XX) XXXX
+                return v.replace(/^(\d{2})(\d{0,4}).*/, "($1) $2");
+            } else if (v.length > 0) {
+                // (X  ou  XX
+                return v.replace(/^(\d{0,2}).*/, "($1");
+            }
+            return "";
+        }
+
+        function formatarCPF(valor) {
+            let v = valor.replace(/\D/g, "");
+
+            if (v.length > 11) {
+                v = v.slice(0, 11);
+            }
+
+            if (v.length > 9) {
+                // 000.000.000-00
+                return v.replace(/^(\d{3})(\d{3})(\d{3})(\d{0,2}).*/, "$1.$2.$3-$4");
+            } else if (v.length > 6) {
+                // 000.000.000
+                return v.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, "$1.$2.$3");
+            } else if (v.length > 3) {
+                // 000.000
+                return v.replace(/^(\d{3})(\d{0,3}).*/, "$1.$2");
+            }
+            return v;
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const telInput = document.getElementById("telefone");
+            const cpfInput = document.getElementById("cpf_motorista");
+
+            if (telInput) {
+                telInput.addEventListener("input", function (e) {
+                    e.target.value = formatarTelefone(e.target.value);
+                });
+            }
+
+            if (cpfInput) {
+                cpfInput.addEventListener("input", function (e) {
+                    e.target.value = formatarCPF(e.target.value);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+</body>
+</html>

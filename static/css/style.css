@@ -296,3 +296,77 @@ h1 {
         font-size: 1.05rem;
     }
 }
+
+
+.presenca-body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-body);
+    color: var(--text-main);
+}
+
+.presenca-container {
+    max-width: 480px;
+    margin: 2rem auto;
+    padding: 1.8rem 1.4rem;
+    background: #ffffff;
+    border-radius: 22px;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+}
+
+.presenca-container h1 {
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+
+.presenca-container p {
+    margin-top: 0;
+    margin-bottom: 1.2rem;
+    color: var(--text-muted);
+}
+
+.form-group {
+    margin-bottom: 0.9rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 0.25rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.55rem 0.7rem;
+    border-radius: 0.7rem;
+    border: 1px solid var(--border-soft);
+    background: #fdf7f8;
+    font-family: inherit;
+    font-size: 0.9rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 0.8rem;
+}
+
+.flash-erro {
+    font-size: 0.85rem;
+    color: #b3261e;
+}
+
+
+.btn.full {
+    width: 100%;
+}
+
+.voltar-link {
+    margin-top: 0.8rem;
+}
