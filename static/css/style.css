@@ -370,3 +370,31 @@ h1 {
 .voltar-link {
     margin-top: 0.8rem;
 }
+
+
+.admin-table-wrapper {
+    margin-top: 1rem;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 0.4rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    text-align: left;
+}
+
+.admin-table th {
+    font-weight: 600;
+    background: #fdf7f8;
+}
+
+.admin-table tr:nth-child(even) td {
+    background: #fdf1f4;
+}

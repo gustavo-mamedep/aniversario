@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Presenças {{ nome_aniversariante }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="presenca-body">
+    <div class="presenca-container">
+        <h1>Admin - Presenças</h1>
+        <p>Lista de confirmações para {{ nome_aniversariante }}.</p>
+
+        <p><strong>Total de pessoas confirmadas:</strong> {{ total_pessoas }}</p>
+
+        {% if presencas %}
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Telefone</th>
+                            <th>Motorista</th>
+                            <th>CPF Motorista</th>
+                            <th>Qtde</th>
+                            <th>Data</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for p in presencas %}
+                            <tr>
+                                <td>{{ p.id }}</td>
+                                <td>{{ p.nome }}</td>
+                                <td>{{ p.telefone }}</td>
+                                <td>{{ p.motorista or "-" }}</td>
+                                <td>{{ p.cpf_motorista or "-" }}</td>
+                                <td>{{ p.qtde_pessoas }}</td>
+                                <td>{{ p.data }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <p>Nenhuma presença registrada ainda.</p>
+        {% endif %}
+
+        <div class="voltar-link" style="margin-top: 1rem;">
+            <a href="{{ url_for('index') }}" class="btn outline">
+                Voltar para o convite
+            </a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from datetime import datetime
-from models import init_db, salvar_presenca
+from models import init_db, salvar_presenca, listar_presencas
 
 app = Flask(__name__)
-app.secret_key = "chave-super-secreta"  # só pro flash funcionar (pode trocar)
+app.secret_key = "analuiza2025niver"
+
 
 # --------- CONFIGURAÇÕES DA FESTA ---------
 NOME_ANIVERSARIANTE = "Ana Luíza"
@@ -12,6 +13,7 @@ LOCAL_NOME = "Condominio Morada do Sol"
 LOCAL_ENDERECO = "Rua Tamarindos, 600"
 LINK_MAPS = "https://www.google.com/maps/place/R.+Tamarindos,+600+-+Morada+do+Sol,+Uberl%C3%A2ndia+-+MG,+38415-474/@-18.8954859,-48.3481422,206m/data=!3m2!1e3!4b1!4m6!3m5!1s0x94a44164977b417d:0x39f7cd92e11fd7e1!8m2!3d-18.8954859!4d-48.3474985!16s%2Fg%2F11lcc6s55r!5m1!1e4?entry=ttu&g_ep=EgoyMDI1MTExNy4wIKXMDSoASAFQAw%3D%3D"
 
+ADMIN_SECRET = "analuiza2025"
 
 # --------- INICIAR BANCO ---------
 init_db()
@@ -99,6 +101,25 @@ def confirmado():
         "confirmado.html",
         nome_aniversariante=NOME_ANIVERSARIANTE,
     )
+
+@app.route("/admin/presencas")
+def admin_presencas():
+    chave = request.args.get("chave", "")
+
+    if chave != ADMIN_SECRET:
+        return "Não autorizado", 401
+
+    presencas = listar_presencas()
+    total_pessoas = sum((p["qtde_pessoas"] or 0) for p in presencas)
+
+    return render_template(
+        "admin_presencas.html",
+        nome_aniversariante=NOME_ANIVERSARIANTE,
+        presencas=presencas,
+        total_pessoas=total_pessoas,
+    )
+
+
 
 
 if __name__ == "__main__":

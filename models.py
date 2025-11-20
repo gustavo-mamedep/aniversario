@@ -41,3 +41,28 @@ def salvar_presenca(nome, telefone, motorista, cpf_motorista, qtde_pessoas, data
     """, (nome, telefone, motorista, cpf_motorista, qtde_pessoas, data))
     conn.commit()
     conn.close()
+
+
+def listar_presencas():
+    conn = get_connection()
+    cur = conn.cursor()
+    cur.execute("""
+        SELECT 
+            id,
+            nome,
+            telefone,
+            motorista,
+            cpf_motorista,
+            qtde_pessoas,
+            data
+        FROM presencas
+        ORDER BY id DESC
+    """)
+    rows = cur.fetchall()
+
+    # transforma cada linha em dict pra ficar fácil de usar no template
+    colunas = [desc[0] for desc in cur.description]
+    presencas = [dict(zip(colunas, row)) for row in rows]
+
+    conn.close()
+    return presencas
