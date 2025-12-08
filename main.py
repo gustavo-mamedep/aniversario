@@ -27,7 +27,7 @@ def index():
     hora_formatada = data_dt.strftime("%H:%M")
 
     return render_template(
-        "index.html",
+        "encerrou.html",
         nome_aniversariante=NOME_ANIVERSARIANTE,
         local_nome=LOCAL_NOME,
         local_endereco=LOCAL_ENDERECO,
